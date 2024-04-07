@@ -7,7 +7,7 @@ import Payement from './components/Payement';
 
 
 import Manager from './components/Manager';
-import "primereact/resources/themes/arya-blue/theme.css"
+import "primereact/resources/themes/arya-purple/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
 import "primeflex/primeflex.css"
