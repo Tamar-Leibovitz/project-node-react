@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
         ref:"User"
     },
     //שם,כמות,מחיר, תמונה, סטטוס
-    products: [{prodId:mongoose.Schema.Types.ObjectId, name:String, price:Number,category:mongoose.Schema.Types.ObjectId}],
+    products: [{prodId:mongoose.Schema.Types.ObjectId, name:String,quantity:Number, price:Number,image:String}],
     price:{
         type: Number,
         required: true
@@ -18,9 +18,10 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Date,
         default: new Date()
     },
-    provided:{
-        type: Boolean,
-        default: false
+    roles:{
+        type: String,
+        enum: ["בטיפול","בדרך אליך","הגיעה ליעדה"],
+        default: "בטיפול"
     },
     message:{
         type: String

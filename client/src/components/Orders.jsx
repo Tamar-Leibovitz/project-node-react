@@ -50,7 +50,7 @@ export default function Orders() {
     const headerTemplate = (data) => {
         return (
             <div className="header-content">
-                <strong>תאריך: {data.date}</strong>
+                <strong>תאריך: {data.date}</strong><br></br>
                 <Tag value={data.status} severity={getSeverity(data.status)} className="order-status" />
             </div>
         );
@@ -76,11 +76,10 @@ export default function Orders() {
                 expandableRowGroups expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
                 rowGroupHeaderTemplate={headerTemplate} tableStyle={{ minWidth: '50rem' }}>
                 <Column expander style={{ width: '3em' }} />
-                <Column field="date" header="תאריך" style={{ width: '25%' }} />
                 <Column field="status" header="סטטוס" body={(rowData) => (
                     <div>
                         <Tag value={rowData.status} severity={getSeverity(rowData.status)} className="order-status" />
-                        <Steps model={[{ label: 'Personal Info' }, { label: 'Reservation' }, { label: 'Review' }]} />
+                        <Steps model={[{ label: 'Personal Info' }, { label: 'Reservation' }, { label: 'Review' }]} activeIndex={rowData.status === 'personal' ? 0 : rowData.status === 'reservation' ? 1 : 2} className="custom-steps" />
                     </div>
                 )} />
                 <Column field="products" header="פרטי ההזמנה" body={productTemplate} style={{ width: '75%' }}></Column>

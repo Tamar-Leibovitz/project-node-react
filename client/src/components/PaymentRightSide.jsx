@@ -18,6 +18,8 @@ const PaymentRightSide = () => {
     const [createOrd] = useAddNewOrderMutation();
     const [deleteAllBasket] = useDeleteAllBasketMutation();
     const { data: allCart } = useGetAllCartQuery();
+        //prodId:mongoose.Schema.Types.ObjectId, name:String,quantity:Number, price:Number,image:String
+
     const { _id } = useAuth();
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
@@ -46,6 +48,7 @@ const PaymentRightSide = () => {
     const createOrder = () => {
         const orderData = {
             userId: _id,
+            //לדאוג שהמוצרים יכילו שם, כמות, מחיר ותמונה. בעיקרון יש הכל ומשום מה בתוך אורדר הוא מביא רק שם ומחיר
             products: allCart,
             price: totalPrice,
             address: `${formData.city} ${formData.street} ${formData.buildingNumber}`,
