@@ -7,7 +7,7 @@ const verifyAdmin = require("../middleware/verifyAdmin")
 
 router.use(verifyJWT)
 
-router.get("/",verifyAdmin, orderController.getAllOrders)
+router.get("/", orderController.getAllOrders)//verifyAdmin,
 router.get("/notProvided",verifyAdmin, orderController.getNotProvidedOrders)
 router.get("/Provided",verifyAdmin, orderController.getProvidedOrders)
 router.get("/:id", orderController.getOrderById)

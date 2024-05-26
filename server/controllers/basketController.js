@@ -29,12 +29,13 @@ const addNewProd = async (req, res) => {
         let newProd = null
 
         if(quant){ //מדובר בהעברת הסל מהלוגין
-            newProd = await Basket.create({ userId: req.user._id, prodId: prodId, price: foundProd.price*quant, name: foundProd.name, quantity:quant })
+            newProd = await Basket.create({ userId: req.user._id, prodId: prodId, price: foundProd.price*quant, name: foundProd.name, quantity:quant ,image:foundProd.image})
             //console.log(newProd);
         }
         else{
-            newProd = await Basket.create({ userId: req.user._id, prodId: prodId, price: foundProd.price, name: foundProd.name })
-            //console.log("else");
+            newProd = await Basket.create({ userId: req.user._id, prodId: prodId, price: foundProd.price, name: foundProd.name ,image:foundProd.image})
+            
+            console.log(foundProd.image);
         }
 
         if (newProd) {
@@ -51,7 +52,7 @@ const getAllCart = async (req, res) => {
 
     //console.log(req.user)
     if (req.user) {
-        const products = await Basket.find({ userId: req.user._id }).lean().populate("prodId", { image: 1})//, name: 1, 
+        const products = await Basket.find({ userId: req.user._id }).lean()//.populate("prodId", { image: 1})//, name: 1, 
         // if(!userId)
         //     res.status.
         // console.log(products);

@@ -35,6 +35,7 @@ import Order from './components/manager/Order'
 import Product from './components/manager/Product'
 import User from './components/manager/User'
 import Orders from './components/Orders';
+import ManagerOrders from './components/ManagerOrders';
 
 function App() {
   
@@ -50,7 +51,7 @@ function App() {
       
       <Routes>
       
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<ManagerOrders />} />
         <Route path="/Payment" element={<Payment />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
@@ -62,6 +63,7 @@ function App() {
         <Route path="/ShowcaseCakes" element={<ShowcaseCakes />} />
         <Route path="/BasketDesign" element={<BasketDesign />} />
         <Route path="/Orders" element={<Orders />} />
+        <Route path="/managerOrders" element={<managerOrders />} />
         <Route path="/Chanut/:category" element={<Chanut />} />
 
         <Route path="/Category" element={<Category />} />

@@ -72,8 +72,9 @@ const Login = () => {
             toast.current.show({ severity: 'success', summary: 'משתמש נרשם בהצלחה', life: 3000 });
         
 
-            if(localStorage.getItem('cart'))
+            if(localStorage.getItem('cart') && localStorage.getItem('cart').length!=0)
             {
+                console.log("localStorage.getItem('cart').length"+localStorage.getItem('cart').length);
                 moveItemsToDB()
                 Swal.fire({
                     title: "ראינו שיש פריטים בסל שלך",

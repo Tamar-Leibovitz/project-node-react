@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Date,
         default: new Date()
     },
-    roles:{
+    status:{
         type: String,
         enum: ["בטיפול","בדרך אליך","הגיעה ליעדה"],
         default: "בטיפול"

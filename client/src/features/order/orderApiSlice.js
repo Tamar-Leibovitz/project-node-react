@@ -5,7 +5,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
         
         getOrdersById: build.query({
             query: (id) => ({
-                url: "/api/order/category/"+id,
+                url: "/api/order/"+id,
                 method: "GET",
             })
         })

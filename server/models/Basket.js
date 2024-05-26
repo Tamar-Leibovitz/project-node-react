@@ -5,6 +5,7 @@ const baskSchema = new mongoose.Schema({
         required: true,
         ref:"User"
     },
+    //לעשות את פרודיד ואת ניימ כפופוליט, למחוק אותם מהמודל ולהביא ברטורנ אול כארט אותם
     prodId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -21,6 +22,9 @@ const baskSchema = new mongoose.Schema({
     quantity: {
         type:Number,
         default:1
+    },
+    image:{
+        type:String
     }
 }, {
     timestamps: true

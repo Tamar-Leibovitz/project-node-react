@@ -16,11 +16,12 @@ const createNewOrder = async (req,res)=>{
 }
 
 const getAllOrders = async (req,res) =>{
-    const orders = await Order.find({},{password:0}).lean()
+    const orders = await Order.find({},{password:0}).populate("userId",{email:1,address:1})
     if(!orders?.length){
         return res.status(400).json({message: "no order found😥"})
     }
     res.json(orders)
+    //userId
 }
 
 const getProvidedOrders = async (req,res) =>{
@@ -40,12 +41,13 @@ const getNotProvidedOrders = async (req,res) =>{
 }
 
 const getOrderById = async(req,res)=>{
-    const{id} = req.params
+    const {id} = req.params
+    console.log("getOrderById: "+id);
     try{
-        const order = await Order.findById({userId:id},{password:0}).lean()
+        const order = await Order.find({userId:id},{password:0}).lean()
         res.json(order)
     }catch(err){
-        return res.status(400).json({message: 'order not found😪'})
+        return res.status(400).json({message: 'orders not found😪'})
     }
 }
 

@@ -307,3 +307,24 @@ code {
   margin-left: auto; /* Move the button to the right */
 }
 
+/* 
+/* styles.css */
+.tag-status {
+  padding: 0.3em 0.7em;
+  display: inline-block;
+  font-weight: bold;
+  color: #fff; 
+}
+
+.tag-betipul {
+  background-color: #32b5e4; 
+}
+
+.tag-baderech {
+  background-color: #1c934c; 
+}
+
+.tag-higiah {
+  background-color: #f903b8; 
+}
+

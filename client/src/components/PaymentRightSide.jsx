@@ -27,9 +27,9 @@ const PaymentRightSide = () => {
     let city, street, buildingNumber;
     const {userName, name, email, phone, isAdmin, isUser,address } = useAuth()
     console.log("phoneeee: "+phone);
-    city = address.split(' ')[0]
-    street = address.split(' ')[1]
-    buildingNumber = address.split(' ')[2]
+    city = address?.split(' ')[0]
+    street = address?.split(' ')[1]
+    buildingNumber = address?.split(' ')[2]
     // State for form fields
     const [formData, setFormData] = useState({
         name: name,
@@ -58,6 +58,7 @@ const PaymentRightSide = () => {
         createOrd(orderData);
         deleteAllBasket();
         alert("ההזמנה נסגרה בהצלחה!");
+        localStorage.removeItem("cart")
         navigate("/");
     };
 
