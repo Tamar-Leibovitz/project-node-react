@@ -1,4 +1,5 @@
 const Category = require("../models/Category")
+const Product = require("../models/Product")
 
 const createNewCategory = async (req,res)=>{
     const{name, description} = req.body
@@ -57,7 +58,13 @@ const updateCategory = async (req,res)=>{
 
 const deleteCategory = async (req,res)=>{
     const{id} = req.params
+    const productOnThisCayegory = await Product.find({category:id},{password:0})
+    if(productOnThisCayegory){
+        return res.status(400).json({message: 'You cannot delete this category because there are products of its type'})
+    }
+    
     const category = await Category.findById(id).exec()
+
     if(!category){
         return res.status(400).json({message: 'category not found😪'})
     }

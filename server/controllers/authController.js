@@ -41,9 +41,10 @@ const register = async (req, res)=>{
         return res.status(409).json("Duplicate userName")
     }
     const hashPwd = await bcrypt.hash(password,10)
-    const userObject = {userName,name,password:hashPwd,email,phone,address}    
+    const userObject = {userName,name,password:hashPwd,email,phone,address,roles:"Admin"}    
     const user = await User.create(userObject)
     if(user){
+        console.log("I am here!!");
         return res.status(201).json({ message: `New User ${user.userName} created` })
     }
     return res.status(400).json({ message: 'Invalid User' })

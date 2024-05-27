@@ -62,10 +62,11 @@ const getProductById = async(req,res)=>{
 const getProductByCategory = async(req,res)=>{
     console.log("111111111111111666666666666666");
     const{categoryName} = req.params
+    console.log("categoryName: ",categoryName);
     //console.log("111111111111111111111",categoryName);
     try{
         const category1 = await Category.find({name:categoryName},{password:0})
-       // console.log(category1[0]._id);
+        console.log(category1[0]);
         const product = await Product.find({category:category1[0]._id},{password:0})
          res.json(product)
     }catch(err){
@@ -75,9 +76,15 @@ const getProductByCategory = async(req,res)=>{
 
 
 const updateProduct = async (req,res)=>{
+    //console.log("yow!!!!!!!!!!!!!!!!! I am here!!!!!!!");
     const{_id,name, price, category,calories,popular} = req.body
-    if (!_id || !name || !price || !name){
-        return res.status(400).json({message: 'fields are required!!🙁'})
+    if (!_id || !name || !price ){
+        if(!_id)
+            return res.status(400).json({message: 'fields _id!!'})
+        if(!name)
+            return res.status(400).json({message: 'fields name!!'})
+        if(!price)
+            return res.status(400).json({message: 'fields price!!'})
     }
     const product = await Product.findById(_id).exec()
     if(!product){

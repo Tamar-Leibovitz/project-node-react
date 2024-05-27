@@ -80,7 +80,7 @@ export default function User() {
         setDeleteUsersDialog(false);
     };
 
-    const saveUser = () => {
+    const saveUser = async () => {
         setSubmitted(true);
 
         {console.log("saveUser",user) } 
@@ -98,7 +98,7 @@ export default function User() {
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
             } 
             else {
-                createUser(_user)
+                await createUser(_user)
                 refetch()
                 console.log("after creating prod!");
                 

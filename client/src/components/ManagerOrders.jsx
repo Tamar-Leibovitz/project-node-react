@@ -3,14 +3,14 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Tag } from 'primereact/tag';
 import { Dropdown } from 'primereact/dropdown';
-import { useGetAllOrdersQuery } from '../features/manager/managOrderApiSlice';
+import { useGetAllOrderQuery,useUpdateOrderMutation } from '../features/manager/ManagerOrderApiSlice';
 
 export default function ManagerOrders() {
     const [orders, setOrders] = useState([]);
     const [expandedRows, setExpandedRows] = useState([]);
     const [currentStatus, setCurrentStatus] = useState('');
-    const { data: ordersData, isLoading, isError, error, isSuccess } = useGetAllOrdersQuery();
-    //const [updateOrderStatus] = useUpdateOrderStatusMutation();
+    const { data: ordersData, isLoading, isError, error, isSuccess } = useGetAllOrderQuery();
+    const [updateOrderStatus] = useUpdateOrderMutation();
 
 
     useEffect(() => {
@@ -105,8 +105,10 @@ export default function ManagerOrders() {
 
     const onStatusChange = async (e, rowData) => {
         const newStatus = e.value;
+        console.log("e.value ",e.value);
+        console.log("rowData ",rowData._id);
         try {
-            //await updateOrderStatus({ id: rowData._id, status: newStatus });
+            await updateOrderStatus({ id: rowData._id, status: newStatus });
             setOrders(prevOrders => prevOrders.map(order =>
                 order._id === rowData._id ? { ...order, status: newStatus } : order
             ));

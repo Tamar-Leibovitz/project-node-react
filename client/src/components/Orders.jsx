@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { Tag } from 'primereact/tag';
 import { Steps } from 'primereact/steps';
 import { CustomerService } from './CustomerService';
-import { useAddNewProdToBasketMutation, useChangeQuantityOfProdMutation, useDeleteProdMutation, useGetAllCartQuery } from "../features/basket/basketApiSlice"
+//import { useAddNewProdToBasketMutation, useChangeQuantityOfProdMutation, useDeleteProdMutation, useGetAllCartQuery } from "../features/basket/basketApiSlice"
 import { useGetOrdersByIdQuery } from '../features/order/orderApiSlice'
 import useAuth from '../hooks/useAuth';
 

@@ -3,10 +3,10 @@ import apiSlice from "../../app/apiSlice"
 const managerApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
         addNewOrder: build.mutation({
-            query: (registerUser) => ({
+            query: (orderDetails) => ({
                 url: "/api/order",
                 method: "POST",
-                body: registerUser
+                body: orderDetails
             })
         }),
         deleteOrder: build.mutation({

@@ -52,20 +52,15 @@ const getOrderById = async(req,res)=>{
 }
 
 const updateOrder = async (req,res)=>{
-    const{_id,userId, products, price,date,provided,message} = req.body
-    if (!_id || !userId || !products){
+    const{id,status} = req.body
+    if (!id || !status){
         return res.status(400).json({message: 'fields are required!!🙁'})
     }
-    const order = await Order.findById(_id).exec()
+    const order = await Order.findById(id).exec()
     if(!order){
         return res.status(400).json({message: 'order not found😪😪'})
     }
-    order.userId = userId,
-    order.products = products,
-    order.price = price,
-    order.date = date,
-    order.provided = provided
-    order.message = message
+    order.status = status
 
     const updatedOrder = await order.save()
 

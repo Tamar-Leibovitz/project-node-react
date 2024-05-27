@@ -7,14 +7,16 @@ const managerApiSlice = apiSlice.injectEndpoints({
                 url: "/api/product",
                 method: "POST",
                 body: registerUser
-            })
+            }),
+            invalidatesTags:["MangProd"]
         }),
 
         deleteProd: build.mutation({
             query: (id) => ({
                 url: "/api/product/"+id,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags:["MangProd"]
         }),
         
         updateProd: build.mutation({
@@ -23,13 +25,14 @@ const managerApiSlice = apiSlice.injectEndpoints({
                 method: "PUT",
                 body: product
             }),
-            invalidatesTags:["prods"]
+            invalidatesTags:["MangProd"]
         }),
         getAllProd: build.query({
             query: () => ({
                 url: "/api/product",
                 method: "GET",
-            })
+            }),
+            providesTags:["MangProd"]
            
         }),
         
@@ -37,14 +40,14 @@ const managerApiSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: "/api/category",
                 method: "GET",
-            })
+            }),
+            invalidatesTags:["MangProd"]
         }),
         getProdWithCategoryName: build.query({
             query: () => ({
                 url: "/api/product/withCategoryName",
                 method: "GET",
-            }),
-            providesTags:["prods"]
+            })
         })
         
     })

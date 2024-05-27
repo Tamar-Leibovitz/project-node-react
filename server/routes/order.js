@@ -13,6 +13,6 @@ router.get("/Provided",verifyAdmin, orderController.getProvidedOrders)
 router.get("/:id", orderController.getOrderById)
 router.post("/", orderController.createNewOrder)
 router.delete("/:id",verifyAdmin, orderController.deleteOrder)
-router.put("/",verifyAdmin, orderController.updateOrder)
+router.put("/", orderController.updateOrder)//verifyAdmin,
 
 module.exports = router
