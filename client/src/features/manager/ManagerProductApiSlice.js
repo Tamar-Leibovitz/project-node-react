@@ -2,11 +2,11 @@ import apiSlice from "../../app/apiSlice"
 
 const managerApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
-        addNewProd: build.mutation({
-            query: (registerUser) => ({
+        addNewProdToDB: build.mutation({
+            query: (product) => ({
                 url: "/api/product",
                 method: "POST",
-                body: registerUser
+                body: product
             }),
             invalidatesTags:["MangProd"]
         }),
@@ -52,4 +52,4 @@ const managerApiSlice = apiSlice.injectEndpoints({
         
     })
 })
-export const { useGetProdWithCategoryNameQuery,useGetAllCategoriesQuery,useAddNewProdMutation, useGetAllProdQuery ,useDeleteProdMutation,useUpdateProdMutation} = managerApiSlice
+export const { useAddNewProdToDBMutation,useGetProdWithCategoryNameQuery,useGetAllCategoriesQuery, useGetAllProdQuery ,useDeleteProdMutation,useUpdateProdMutation} = managerApiSlice

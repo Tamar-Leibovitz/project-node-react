@@ -31,7 +31,7 @@ router.get("/withCategoryName",verifyAdmin, productController.getAllProductWithC
 router.post("/",verifyAdmin,upload.single('image'), productController.createNewProduct)
 
 router.delete("/:id",verifyAdmin, productController.deleteProduct)
-router.put("/",verifyAdmin, productController.updateProduct)
+router.put("/",verifyAdmin,upload.single('image'), productController.updateProduct)
 
 module.exports = router
 

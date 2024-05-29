@@ -2,15 +2,13 @@ const Product = require("../models/Product")
 const Category = require("../models/Category")
 
 const createNewProduct = async (req,res)=>{
+    console.log("createNewProduct in productController");
     const{name, price, category} = req.body
-    if(!name || !price || !category||!req.file){//
-        // if(!name)console.log("!name");
-        // if(!price)console.log("!price");
-        // if(!category)console.log("!category");
-        // if(!req.file)console.log("!req.file");
+    if(!name || !price || !category||!req.file){
         return res.status(400).json({message: 'field are required!!😒'})
     }
-        
+    console.log(req.file);
+
     const tmp = await Product.findOne({name:name}).exec()
     if(tmp){
         return res.status(400).json({message:'the productname is already exist!!'})
@@ -31,18 +29,15 @@ const getAllProduct = async (req,res) =>{
     if(!product?.length){
         return res.status(400).json({message: "no product found😥"})
     }
-    console.log("getAllProduct2");
     res.json(product)
 }
 
 
 const getAllProductWithCategoryName = async (req,res) =>{
-    console.log("lllll");
     const product = await Product.find({},{password:0}).populate("category",{name:1})
     if(!product?.length){
         return res.status(400).json({message: "no product found😥"})
     }
-    console.log("getAllProduct2");
     res.json(product)
 }
 
@@ -99,7 +94,7 @@ const updateProduct = async (req,res)=>{
     product.name=name,
     product.price=price,
     product.category=category,
-    product.image=req.file?req.file.path:product.image;
+    product.image = req.file?req.file.path:product.image;
     //console.log(product.image);
     //console.log(category);
     const updatedProduct = await product.save()
