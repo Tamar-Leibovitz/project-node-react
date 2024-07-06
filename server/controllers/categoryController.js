@@ -38,6 +38,7 @@ const getCategoryById = async(req,res)=>{
 }
 
 const updateCategory = async (req,res)=>{
+    console.log("updateCategory");
     const{_id,name, description} = req.body
     console.log(_id,name, description);
     if (!_id || !name){

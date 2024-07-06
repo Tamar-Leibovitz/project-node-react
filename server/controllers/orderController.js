@@ -1,7 +1,7 @@
 const Order = require("../models/Order")
 
 const createNewOrder = async (req,res)=>{
-    const{userId, products,address, price,date,message} = req.body
+    const {userId, products,address, price,date,message} = req.body
     if(!userId || !products)
         return res.status(400).json({message: 'field are required!!😒'})
    // console.log(products);

@@ -51,7 +51,7 @@ function App() {
       
       <Routes>
       
-        <Route path="/" element={<ManagerOrders />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/Payment" element={<Payment />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />

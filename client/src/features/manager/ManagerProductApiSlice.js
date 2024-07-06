@@ -11,7 +11,7 @@ const managerApiSlice = apiSlice.injectEndpoints({
             invalidatesTags:["MangProd"]
         }),
 
-        deleteProd: build.mutation({
+        deleteProduct: build.mutation({
             query: (id) => ({
                 url: "/api/product/"+id,
                 method: "DELETE"
@@ -52,4 +52,4 @@ const managerApiSlice = apiSlice.injectEndpoints({
         
     })
 })
-export const { useAddNewProdToDBMutation,useGetProdWithCategoryNameQuery,useGetAllCategoriesQuery, useGetAllProdQuery ,useDeleteProdMutation,useUpdateProdMutation} = managerApiSlice
+export const { useAddNewProdToDBMutation,useGetProdWithCategoryNameQuery,useGetAllCategoriesQuery, useGetAllProdQuery ,useDeleteProductMutation,useUpdateProdMutation} = managerApiSlice

@@ -18,8 +18,8 @@ export default function Order() {
             // Extracting email and address fields from ordersData and updating state
             const formattedOrders = ordersData.map(order => ({
                 ...order,
-                email: order.userId.email, // Assuming customer email is accessible this way
-                address: order.userId.address // Assuming customer address is accessible this way
+               // email: order.userId.email, // Assuming customer email is accessible this way
+                //address: order.userId.address // Assuming customer address is accessible this way
             }));
             setOrders(formattedOrders);
         }

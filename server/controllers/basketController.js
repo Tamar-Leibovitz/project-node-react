@@ -49,22 +49,28 @@ const addNewProd = async (req, res) => {
 }
 
 const getAllCart = async (req, res) => {
+    console.log("gggggggggggggggggggggggggggggetAllCart");
+    console.log("gggggggggggggggggggggggggggggetAllCart");
+    console.log("gggggggggggggggggggggggggggggetAllCart");
+    console.log("gggggggggggggggggggggggggggggetAllCart");
 
     //console.log(req.user)
     if (req.user) {
-        const products = await Basket.find({ userId: req.user._id }).lean()//.populate("prodId", { image: 1})//, name: 1, 
-        // if(!userId)
-        //     res.status.
-        // console.log(products);
-
+        console.log("I am hereeeeeeeee");
+        const products = await Basket.find({ userId: req.user._id}).populate("prodId",{isAvailible:1})//, name: 1, 
+        
         if (!products?.length) {
+            console.log("nooooooooooooooooooooooooo");
             return res.status(400).json({ message: "No products in basket :(" })
         }
-        //console.log(getAllCart+products);
+        console.log(products[0]);
         res.json(products)
     }
-    else 
+    else {
+        console.log("no token??????????????");
         return res.send("no token")
+
+    }
 
 }
 
@@ -127,8 +133,6 @@ const changeQuantityOfProd = async (req, res) => {
     prod.quantity = quantity
 
     prod.price = quantity * prod.prodId.price
-
-    //console.log(prod);
 
     await prod.save()
 

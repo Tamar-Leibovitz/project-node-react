@@ -12,10 +12,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAddNewProdToBasketMutation } from '../features/basket/basketApiSlice';
 import Swal from 'sweetalert2'
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
+
     const dispatch = useDispatch()
-    
+    const {isAdmin, name} = useAuth()
     const [loginFunc, { isError, error, isSuccess, data }] = useLoginMutation()
 
     const [addProdToBasket, { isError2, error2, isSuccess2, data2 }] = useAddNewProdToBasketMutation()
@@ -71,8 +73,8 @@ const Login = () => {
             
             toast.current.show({ severity: 'success', summary: 'משתמש נרשם בהצלחה', life: 3000 });
         
-
-            if(localStorage.getItem('cart') && localStorage.getItem('cart').length!=0)
+            console.log("isAdmin: ",isAdmin);
+            if(!isAdmin && localStorage.getItem('cart') && localStorage.getItem('cart').length!=0)
             {
                 console.log("localStorage.getItem('cart').length"+localStorage.getItem('cart').length);
                 moveItemsToDB()
@@ -90,7 +92,7 @@ const Login = () => {
                       navigate("/Payment")
                     }
                     else{
-                        navigate("/Chanut/Petifures")
+                        navigate("/")
                     }
 
                   });

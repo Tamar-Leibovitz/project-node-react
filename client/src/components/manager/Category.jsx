@@ -78,7 +78,7 @@ export default function Category() {
 
     const saveCategory = () => {
         setSubmitted(true);
-        debugger
+        
         {console.log("saveCategory",category) } 
         console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",category);
         if (category.name.trim()) {
@@ -88,7 +88,7 @@ export default function Category() {
 
             if (category._id) {
                 const index = findIndexById(category._id);
-                console.log(_category);
+                console.log("_categoryyyyyyyyyyyyyyyyyyyyyyyyy:   "+_category);
                 updateCategory(_category)
                 refetch()
                 _categorys[index] = _category;

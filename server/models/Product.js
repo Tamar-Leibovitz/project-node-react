@@ -19,6 +19,10 @@ const prodSchema = new mongoose.Schema({
     },
     image: {
         type: String
+    },
+    isAvailible:{
+        type:mongoose.Schema.Types.String,
+        default: true
     }
 }, {
     timestamps: true

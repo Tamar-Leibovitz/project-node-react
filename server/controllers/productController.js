@@ -105,12 +105,11 @@ const deleteProduct = async (req,res)=>{
     const{id} = req.params
     const product = await Product.findById(id).exec()
     if(!product){
-        
-
         return res.status(400).json({message: 'product not found😪'})
     }
-    
-    await product.deleteOne()
+    //await product.deleteOne()
+    product.isAvailible = false
+    await product.save();
     const reply=`product ${product.name} ID ${product._id} deleted`
     res.json(reply)
 }

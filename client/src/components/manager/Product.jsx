@@ -15,7 +15,7 @@ import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
 // import swal from 'sweetalert';
 // import { useGetAllProdQuery } from '../../features/product/productApiSlice';
-import { useGetProdWithCategoryNameQuery, useGetAllCategoriesQuery, useAddNewProdToDBMutation, useGetAllProdQuery, useDeleteProdMutation, useUpdateProdMutation } from '../../features/manager/ManagerProductApiSlice';
+import { useGetProdWithCategoryNameQuery, useGetAllCategoriesQuery, useAddNewProdToDBMutation, useGetAllProdQuery, useDeleteProductMutation, useUpdateProdMutation } from '../../features/manager/ManagerProductApiSlice';
 
 import { Dropdown } from 'primereact/dropdown';
 export default function Product() {
@@ -45,7 +45,7 @@ export default function Product() {
     const { data: allCategories = [], isLoading: isLoading2, isError: isError2, error: error2, isSuccess: isSuccess2, refetch: refetchCategories } = useGetAllCategoriesQuery()
 
     const [createProd, { isError: isError5, error: error5, isSuccess: isSuccess5 }] = useAddNewProdToDBMutation()
-    const [deleteProd, { isError: isError3, error: error3, isSuccess: isSuccess3 }] = useDeleteProdMutation()
+    const [deleteProd, { isError: isError3, error: error3, isSuccess: isSuccess3 }] = useDeleteProductMutation()
     const [updateProd, { isError: isError4, error: error4, isSuccess: isSuccess4 }] = useUpdateProdMutation()
 
     const handleChangeFile = (e) => {
@@ -98,7 +98,7 @@ export default function Product() {
                     formData.append("name", _product.name)
                     formData.append("price", _product.price)
                     formData.append("image", selectedFile)
-                    debugger
+                    
                     const index = findIndexById(product._id);
                     console.log("formDataaaaa: ", formData);
                     updateProd(formData)
@@ -153,7 +153,7 @@ export default function Product() {
     };
 
     const deleteProduct = () => {
-        debugger
+        
         deleteProd(product._id)
         refetch()
         // setProducts(_products);
