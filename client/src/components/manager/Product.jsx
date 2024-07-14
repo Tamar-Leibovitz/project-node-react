@@ -136,6 +136,7 @@ export default function Product() {
             setProductDialog(false);
             setProduct(emptyProduct);
         }
+        window.location.reload(true)
     };
     //editttttttttttttttttt
     const editProduct = (product) => {
@@ -150,6 +151,7 @@ export default function Product() {
         setProduct(product);
         setDeleteProductDialog(true);
         refetch()
+        
     };
 
     const deleteProduct = () => {
@@ -394,5 +396,6 @@ export default function Product() {
                 </div>
             </Dialog> */}
         </div>
+        
     );
 }

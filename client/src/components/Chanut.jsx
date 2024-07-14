@@ -3,6 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 //////////
 import { Dialog } from 'primereact/dialog';
 //////////
+import swal from 'sweetalert';
 // import { ProductService } from './service/ProductService2';
 import { Button } from 'primereact/button';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
@@ -61,16 +62,11 @@ export default function Chanut() {
     // const { data:allProduct, isLoading2,isError3, error3, isSuccess3 } = useGetAllProductQuery()//category
 
     useEffect(() => {
-
         if (isSuccess) {
             // console.log(data);
             setProducts(data)
-
-
-        }
-        else
+        }else
             console.log("loading");
-
     }, [isSuccess]);
 
     const getSeverity = (product) => {
@@ -213,10 +209,12 @@ export default function Chanut() {
                 let pro = { ...product, qty: 1 }
                 cart.push(pro)
             }
-
+           
             // console.log('carttt', cart);
             localStorage.setItem('cart', JSON.stringify(cart))
-        }
+        } 
+        // alert("added!!!")
+        swal("פריט נוסף לסל בהצלחה"," ","success")
 
     }
 
