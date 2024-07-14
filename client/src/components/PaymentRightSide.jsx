@@ -9,7 +9,6 @@ import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from "primereact/inputtextarea";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useNavigate } from 'react-router-dom';
-//import { useAddNewOrderMutation, useGetAllCartQuery, useDeleteAllBasketMutation } from '../features/apiSlices';
 import useAuth from '../hooks/useAuth';
 
 

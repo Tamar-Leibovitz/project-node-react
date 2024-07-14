@@ -23,18 +23,20 @@ const createNewProduct = async (req,res)=>{
     
 }
 
-const getAllProduct = async (req,res) =>{ 
-    console.log("getAllProduct");
-    const product = await Product.find({},{password:0}).lean()
-    if(!product?.length){
-        return res.status(400).json({message: "no product found😥"})
-    }
-    res.json(product)
-}
 
+const getAllProduct = async (req, res) => {
+    console.log("hi, get all products");
+    // Fetch only products that are available
+    const products = await Product.find({isAvailible:true},{ password: 0 }).lean();
+
+    if (!products?.length) {
+        return res.status(400).json({ message: "no product found😥" });
+    }
+    res.json(products);
+};
 
 const getAllProductWithCategoryName = async (req,res) =>{
-    const product = await Product.find({},{password:0}).populate("category",{name:1})
+    const product = await Product.find({isAvailible:true},{password:0}).populate("category",{name:1})
     if(!product?.length){
         return res.status(400).json({message: "no product found😥"})
     }
@@ -62,7 +64,8 @@ const getProductByCategory = async(req,res)=>{
     try{
         const category1 = await Category.find({name:categoryName},{password:0})
         console.log(category1[0]);
-        const product = await Product.find({category:category1[0]._id},{password:0})
+        const product = await Product.find({category:category1[0]._id, isAvailible: true},{password:0})
+        console.log("products: "+product );
          res.json(product)
     }catch(err){
         return res.status(400).json({message: 'product not found😪'})
@@ -101,6 +104,7 @@ const updateProduct = async (req,res)=>{
 
     res.json(`'${updatedProduct.name}' updated😊`)
 }
+
 const deleteProduct = async (req,res)=>{
     const{id} = req.params
     const product = await Product.findById(id).exec()

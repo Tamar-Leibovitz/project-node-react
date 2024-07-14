@@ -74,14 +74,11 @@ export default function Chanut() {
     }, [isSuccess]);
 
     const getSeverity = (product) => {
-        switch (product.inventoryStatus) {
-            case 'INSTOCK':
+        switch (product.isAvailible) {
+            case true:
                 return 'success';
 
-            case 'LOWSTOCK':
-                return 'warning';
-
-            case 'OUTOFSTOCK':
+            case false:
                 return 'danger';
 
             default:
@@ -123,12 +120,12 @@ export default function Chanut() {
                                     <i className="pi pi-tag"></i>
                                     <span className="font-semibold">{product.category}</span>
                                 </span>
-                                <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>
+                                <Tag value={product.isAvailible} severity={getSeverity(product)}></Tag>
                             </div>
                         </div>
                         <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                             <span className="text-2xl font-semibold">${product.price}</span>
-                            <Button icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                            <Button icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.isAvailible === false}></Button>
                         </div>
                     </div>
                 </div>
@@ -137,10 +134,9 @@ export default function Chanut() {
     };
 
     const gridItem = (product) => {
-        // { console.log(product) }
+        console.log(product);
         return (
-
-
+            
             <div className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
                 <div className="p-4 border-1 surface-border surface-card border-round">
                     <div className="flex flex-wrap align-items-center justify-content-between gap-2">
@@ -148,17 +144,17 @@ export default function Chanut() {
                             <i className="pi pi-tag"></i>
                             <span className="font-semibold">{product.category}</span>
                         </div>
-                        <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>
+                       {!product.isAvailible &&<Tag value="אזל מהמלאי" severity={getSeverity(product)}></Tag>} 
                     </div>
                     <div className="flex flex-column align-items-center gap-3 py-5">
-                        <img className="classSize" src={`http://localhost:7777/uploads/${product.image}`} alt={product.name} onClick={() => openDialog(product)} />
+                        <img className="classSize" src={`http://localhost:7777/uploads/${product.image.split("\\")[2]}`} alt={product.name} onClick={() => openDialog(product)} />
                         <div className="text-2xl font-bold">{product.name}</div>
                         <Rating value={product.rating} readOnly cancel={false}></Rating>
                     </div>
                     <div className="flex align-items-center justify-content-between">
                         <span className="text-2xl font-semibold">₪{product.price}</span>
                         {/* איקון עגלה */}
-                        <Button onClick={() => hundleAddToCart(product)} icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.inventoryStatus === 'OUTOFSTOCK'}></Button>
+                        <Button onClick={() => hundleAddToCart(product)} icon="pi pi-shopping-cart" className="p-button-rounded" disabled={product.isAvailible === false}></Button>
 
                     </div>
                 </div>
@@ -240,7 +236,7 @@ export default function Chanut() {
                 dismissableMask
                 draggable={false}>
                 <div className="flex">
-                    <img src={`http://localhost:7777/uploads/${selectedProduct?.image}`} alt={selectedProduct?.name} style={{ maxWidth: '100%', maxHeight: '400px' }} />
+                    <img src={`http://localhost:7777/uploads/${selectedProduct?.image.split("\\")[2]}`} alt={selectedProduct?.name} style={{ maxWidth: '100%', maxHeight: '400px' }} />
                     <div className="p-4">
                         <h2>{selectedProduct?.name}</h2>
                         <p>{selectedProduct?.description}</p> {/* Assuming description is available */}
